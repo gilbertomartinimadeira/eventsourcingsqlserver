@@ -261,7 +261,7 @@ namespace es
             this.created_at = created_at;
         }
 
-            class ValueObject
+            class EventInfo
             {
                 public decimal QuantiaEmDinheiro{get;set;}
             }
@@ -272,12 +272,12 @@ namespace es
             switch(event_name)
             {
                 case "Saque" :                
-                    var valueObject = JsonSerializer.Deserialize<ValueObject>(event_info) ?? new ValueObject();
+                    var valueObject = JsonSerializer.Deserialize<EventInfo>(event_info) ?? new EventInfo();
                     evento = new Saque(stream_id, valueObject.QuantiaEmDinheiro,created_at);
                 break;
 
                 case "Deposito" :                
-                    valueObject = JsonSerializer.Deserialize<ValueObject>(event_info) ?? new ValueObject();
+                    valueObject = JsonSerializer.Deserialize<EventInfo>(event_info) ?? new EventInfo();
                     evento = new Deposito(stream_id, valueObject.QuantiaEmDinheiro,created_at);
                 break;
             }
